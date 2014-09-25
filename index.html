@@ -3,17 +3,30 @@
     <script type="text/javascript" src="jquery-1.10.2.js"></script>
     <script type="text/javascript" src="handlebars-1.1.2.js"></script>
     <script type="text/javascript" src="ember-1.7.0.js"></script>
-    <script type="text/javascript" src="ember-data.js"></script>
+    <!-- <script type="text/javascript" src="ember-data.js"></script> -->
     <script type="text/javascript" src="app.js"></script>
     <link rel="stylesheet" type="text/css" href="bootstrap.css">
     <title>My Ember App</title>
   </head>
 
   <body>
-    <script type="text/x-handlebars">
-      <div class="navbar"></div>
-      <div class="container"></div>
+    <script type="text/x-handlebars" data-template-name="application">
+      <div class="navbar">
+        <a href="#">Home</a> |
+        <a href="#/aboutme">About</a>
+      </div>
+      <div class="container">
+        {{outlet}}
+      </div>
       <footer class="container"></footer>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="index">
+      <h1>Welcome to My Ember App!</h1>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="about">
+      <h1>About Me</h1>
     </script>
   </body>
 </html>  
