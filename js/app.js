@@ -3,5 +3,13 @@ var App = Ember.Application.create({
 });
 
 App.Router.map(function() {
-  this.route( 'about', { path: '/aboutme' } );
+  this.route( 'about' );
+});
+
+App.IndexController = Ember.Controller.extend({
+  name: 'Chris',
+  espresso: './img/espresso.jpg',
+  date: function() {
+    return (new Date()).toDateString();
+  }.property()
 });

@@ -12,8 +12,8 @@
   <body>
     <script type="text/x-handlebars" data-template-name="application">
       <div class="navbar">
-        <a href="#">Home</a> |
-        <a href="#/aboutme">About</a>
+        {{#link-to 'index' tagName='li'}}Home{{/link-to}}
+        {{#link-to 'about' tagName='li'}}About{{/link-to}}
       </div>
       <div class="container">
         {{outlet}}
@@ -23,6 +23,9 @@
 
     <script type="text/x-handlebars" data-template-name="index">
       <h1>Welcome to My Ember App!</h1>
+      <p>My name is {{name}} and this is my first Ember app!</p>
+      <img {{bind-attr src='espresso'}} alt='espresso' width='600px' />
+      <p>Page rendered on {{date}}</p>
     </script>
 
     <script type="text/x-handlebars" data-template-name="about">
