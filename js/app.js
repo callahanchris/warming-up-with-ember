@@ -9,12 +9,6 @@ App.Router.map(function() {
   });
 });
 
-App.EspressosRoute = Ember.Route.extend({
-  model: function() {
-    return App.Espresso.find();
-  }
-});
-
 App.IndexController = Ember.Controller.extend({
   name: 'Chris',
   espresso: './img/espresso.jpg',
@@ -23,8 +17,18 @@ App.IndexController = Ember.Controller.extend({
   }.property()
 });
 
-App.EspressosController = Ember.Controller.extend({
+App.EspressosController = Ember.Controller.extend();
 
+App.EspressosRoute = Ember.Route.extend({
+  model: function() {
+    return App.Espresso.find();
+  }
+});
+
+App.ApplicationAdapter = DS.FixtureAdapter.extend();
+
+App.Store = DS.Store.extend({
+  adapter: 'DS.FixtureAdapter'
 });
 
 App.Espresso = DS.Model.extend({
@@ -32,41 +36,6 @@ App.Espresso = DS.Model.extend({
   ingredients: DS.attr(),
   price: DS.attr(),
   reviews: DS.hasMany( 'review', { async: true } )
-});
-
-App.Review = DS.Model.extend({
-  text: DS.attr(),
-  rating: DS.attr(),
-  espresso: DS.belongsTo( 'espresso' )
-});
-
-App.Review.FIXTURES = [
-  {
-    id: 1,
-    espresso: 1,
-    text: 'A true classic.',
-    rating: 4
-  },
-  {
-    id: 2,
-    espresso: 1,
-    text: 'My favorite, always a sure bet!',
-    rating: 5
-  },
-  {
-    id: 3,
-    espresso: 2,
-    text: 'Sometimes a little milk makes for a rich experience.',
-    rating: 4
-  }
-];
-
-App.ApplicationAdapter = DS.FixtureAdapter.extend({
-
-});
-
-App.Store = DS.Store.extend({
-  adapter: 'DS.FixtureAdapter'
 });
 
 App.Espresso.FIXTURES = [
@@ -98,4 +67,31 @@ App.Espresso.FIXTURES = [
     price: 3.25,
     reviews: [3]
   },
+];
+
+App.Review = DS.Model.extend({
+  text: DS.attr(),
+  rating: DS.attr(),
+  espresso: DS.belongsTo( 'espresso' )
+});
+
+App.Review.FIXTURES = [
+  {
+    id: 1,
+    espresso: 1,
+    text: 'A true classic.',
+    rating: 4
+  },
+  {
+    id: 2,
+    espresso: 1,
+    text: 'My favorite, always a sure bet!',
+    rating: 5
+  },
+  {
+    id: 3,
+    espresso: 2,
+    text: 'Sometimes a little milk makes for a rich experience.',
+    rating: 4
+  }
 ];
