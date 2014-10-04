@@ -4,8 +4,9 @@ var App = Ember.Application.create({
 
 App.Router.map(function() {
   this.route( 'about' );
-  this.resource( 'espressos' );
-  this.resource( 'espresso', { path: '/espressos/:name' } );
+  this.resource( 'espressos', function() {
+    this.resource( 'espresso', { path: '/:name' } );
+  });
 });
 
 App.EspressosRoute = Ember.Route.extend({
