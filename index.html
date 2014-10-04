@@ -1,35 +1,55 @@
 <html>
   <head>
-    <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
-    <script type="text/javascript" src="js/handlebars-1.1.2.js"></script>
-    <script type="text/javascript" src="js/ember-1.7.0.js"></script>
-    <!-- <script type="text/javascript" src="js/ember-data.js"></script> -->
-    <script type="text/javascript" src="js/app.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <script type='text/javascript' src='js/jquery-1.10.2.js'></script>
+    <script type='text/javascript' src='js/handlebars-1.1.2.js'></script>
+    <script type='text/javascript' src='js/ember-1.7.0.js'></script>
+    <!-- <script type='text/javascript' src='js/ember-data.js'></script> -->
+    <script type='text/javascript' src='js/app.js'></script>
+    <link rel='stylesheet' type='text/css' href='css/bootstrap.css'>
     <title>My Ember App</title>
   </head>
 
   <body>
-    <script type="text/x-handlebars" data-template-name="application">
-      <div class="navbar">
+    <script type='text/x-handlebars' data-template-name='application'>
+      <div class='navbar'>
         {{#link-to 'index' tagName='li'}}Home{{/link-to}}
         {{#link-to 'about' tagName='li'}}About{{/link-to}}
+        {{#link-to 'espressos' tagName='li'}}Espresso{{/link-to}}
       </div>
-      <div class="container">
+      <div class='container'>
         {{outlet}}
       </div>
-      <footer class="container"></footer>
+      <footer class='container'></footer>
     </script>
 
-    <script type="text/x-handlebars" data-template-name="index">
+    <script type='text/x-handlebars' data-template-name='index'>
       <h1>Welcome to My Ember App!</h1>
       <p>My name is {{name}} and this is my first Ember app!</p>
       <img {{bind-attr src='espresso'}} alt='espresso' width='600px' />
       <p>Page rendered on {{date}}</p>
     </script>
 
-    <script type="text/x-handlebars" data-template-name="about">
-      <h1>About Me</h1>
+    <script type='text/x-handlebars' data-template-name='about'>
+      <h1>About</h1>
+      <p>A humble website about a delicious beverage.</p>
+    </script>
+
+    <script type='text/x-handlebars' data-template-name='espressos'>
+      <h1>All About Espresso</h1>
+      {{#each espresso in model}}
+        {{#link-to 'espresso' espresso classNames='list-group-item'}}
+          <h3>{{espresso.name}}</h3>
+        {{/link-to}}
+        <p>${{espresso.price}}</p>
+      {{/each}}
+    </script>
+
+    <script type='text/x-handlebars' data-template-name='espresso'>
+      <h1>{{name}}</h1>
+      {{#each ingredient in ingredients}}
+        <h3>{{ingredient.quantity}} {{ingredient.type}}</h3>
+      {{/each}}
+      <p>${{price}}</p>
     </script>
   </body>
 </html>  
