@@ -5,19 +5,13 @@ var App = Ember.Application.create({
 App.Router.map(function() {
   this.route( 'about' );
   this.resource( 'espressos', function() {
-    this.resource( 'espresso', { path: '/:name' } );
+    this.resource( 'espresso', { path: '/:espresso_id' } );
   });
 });
 
 App.EspressosRoute = Ember.Route.extend({
   model: function() {
-    return App.ESPRESSOS;
-  }
-});
-
-App.EspressoRoute = Ember.Route.extend({
-  model: function(params) {
-    return App.ESPRESSOS.findBy('name', params.name);
+    return App.Espresso.find();
   }
 });
 
@@ -33,8 +27,51 @@ App.EspressosController = Ember.Controller.extend({
 
 });
 
-App.ESPRESSOS = [
+App.Espresso = DS.Model.extend({
+  name: DS.attr(),
+  ingredients: DS.attr(),
+  price: DS.attr(),
+  reviews: DS.hasMany( 'review', { async: true } )
+});
+
+App.Review = DS.Model.extend({
+  text: DS.attr(),
+  rating: DS.attr(),
+  espresso: DS.belongsTo( 'espresso' )
+});
+
+App.Review.FIXTURES = [
   {
+    id: 1,
+    espresso: 1,
+    text: 'A true classic.',
+    rating: 4
+  },
+  {
+    id: 2,
+    espresso: 1,
+    text: 'My favorite, always a sure bet!',
+    rating: 5
+  },
+  {
+    id: 3,
+    espresso: 2,
+    text: 'Sometimes a little milk makes for a rich experience.',
+    rating: 4
+  }
+];
+
+App.ApplicationAdapter = DS.FixtureAdapter.extend({
+
+});
+
+App.Store = DS.Store.extend({
+  adapter: 'DS.FixtureAdapter'
+});
+
+App.Espresso.FIXTURES = [
+  {
+    id: 1,
     name: 'Espresso',
     ingredients: [
       {
@@ -42,9 +79,11 @@ App.ESPRESSOS = [
         quantity: 1
       }
     ],
-    price: 2.50
+    price: 2.50,
+    reviews: [1, 2]
   },
   {
+    id: 2,
     name: 'Macchiato',
     ingredients: [
       {
@@ -56,6 +95,7 @@ App.ESPRESSOS = [
         quantity: 1
       }
     ],
-    price: 3.25
+    price: 3.25,
+    reviews: [3]
   },
 ];

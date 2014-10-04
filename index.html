@@ -3,7 +3,7 @@
     <script type='text/javascript' src='js/jquery-1.10.2.js'></script>
     <script type='text/javascript' src='js/handlebars-1.1.2.js'></script>
     <script type='text/javascript' src='js/ember-1.7.0.js'></script>
-    <!-- <script type='text/javascript' src='js/ember-data.js'></script> -->
+    <script type='text/javascript' src='js/ember-data.js'></script>
     <script type='text/javascript' src='js/app.js'></script>
     <link rel='stylesheet' type='text/css' href='css/bootstrap.css'>
     <title>My Ember App</title>
@@ -58,10 +58,22 @@
 
     <script type='text/x-handlebars' data-template-name='espresso'>
       <h1>{{name}}</h1>
-      {{#each ingredient in ingredients}}
-        <h3>{{ingredient.quantity}} {{ingredient.type}}</h3>
-      {{/each}}
+        {{#each ingredients}}
+          <h3>{{quantity}} {{type}}</h3>
+        {{/each}}
       <p>${{price}}</p>
+      <h3>Reviews</h3>
+      <ul>
+        {{#each reviews}}
+          <li>{{rating}} Stars
+            <p>{{text}}</p>
+          </li>
+        {{else}}
+          <li>No reviews yet!
+            <p class='text-muted'>What do you think of this beverage?</p>
+          </li>
+        {{/each}}
+      </ul>
     </script>
   </body>
 </html>  
