@@ -36,12 +36,20 @@
 
     <script type='text/x-handlebars' data-template-name='espressos'>
       <h1>All About Espresso</h1>
-      {{#each espresso in model}}
-        {{#link-to 'espresso' espresso classNames='list-group-item'}}
-          <h3>{{espresso.name}}</h3>
-        {{/link-to}}
-        <p>${{espresso.price}}</p>
-      {{/each}}
+      <div class='row'>
+        <div class='col-sm-3'>
+          <div class='list-group'>
+            {{#each espresso in model}}
+              {{#link-to 'espresso' espresso classNames='list-group-item'}}
+                {{espresso.name}}
+              {{/link-to}}
+            {{/each}}
+          </div>
+        </div>
+        <div class='col-sm-9'>
+          {{outlet}}
+        </div>
+      </div>
     </script>
 
     <script type='text/x-handlebars' data-template-name='espresso'>
