@@ -1,3 +1,20 @@
+body {
+  font-family: "premiera book", georgia, serif;
+}
+
+.navbar {
+  background-color: #F8F8F8;
+}
+
 .navbar li {
-  background-color: #ccc;
+  padding: 20px;
+  font-size: 18px;
+}
+
+.active {
+  background-color: #428BCA;
+}
+
+p {
+  font-size: 14px;
 }

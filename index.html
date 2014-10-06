@@ -12,11 +12,17 @@
 
   <body>
     <script type='text/x-handlebars' data-template-name='application'>
-      <div class='navbar'>
-        {{#link-to 'index' tagName='li'}}Home{{/link-to}}
-        {{#link-to 'about' tagName='li'}}About{{/link-to}}
-        {{#link-to 'espressos' tagName='li'}}Espresso{{/link-to}}
-      </div>
+      <nav class='navbar navbar-default' role='navigation'>
+        <div class='container'>
+          <div class='collapse navbar-collapse'>
+            <ul class='nav navbar-nav'>
+              {{#link-to 'index' tagName='li'}}Home{{/link-to}}
+              {{#link-to 'about' tagName='li'}}About{{/link-to}}
+              {{#link-to 'espressos' tagName='li'}}Espresso{{/link-to}}
+            </ul>
+          </div>
+        </div>
+      </nav>
       <div class='container'>
         {{outlet}}
       </div>
@@ -27,18 +33,8 @@
       <h1>Welcome to My Ember App!</h1>
       <p>My name is {{name}} and this is my first Ember app!</p>
       <p>
-        Go to the {{#link-to 'espressos'}}Espresso section{{/link-to}} to see {{espressosCount}} different variations on this classic drink, including the following lactose free options:
+        Go to the {{#link-to 'espressos'}}Espresso section{{/link-to}} to see {{espressosCount}} different variations on this classic drink!
       </p>
-      <ul>
-        {{#each noMilk}}
-          <li>
-            {{name}}, made with 
-              {{#each ingredients}}
-                {{type}}
-              {{/each}}
-          </li>
-        {{/each}}
-      </ul>
       <img {{bind-attr src='espresso'}} alt='espresso' width='600px' />
       <p>Page rendered on {{date}}</p>
     </script>
