@@ -9,19 +9,28 @@ App.Router.map(function() {
   });
 });
 
-App.IndexController = Ember.Controller.extend({
+App.IndexController = Ember.ArrayController.extend({
   name: 'Chris',
   espresso: './img/espresso.jpg',
   date: function() {
     return ( new Date() ).toDateString();
-  }.property()
+  }.property(),
+  espressosCount: Ember.computed.alias( 'length' )
 });
 
-App.EspressosController = Ember.Controller.extend();
+App.IndexRoute = Ember.Route.extend({
+  model: function() {
+    return this.store.find( 'espresso' );
+  }
+});
+
+App.EspressosController = Ember.ArrayController.extend({
+  sortProperties: ['name']
+});
 
 App.EspressosRoute = Ember.Route.extend({
   model: function() {
-    return App.Espresso.find();
+    return this.store.find( 'espresso' );
   }
 });
 
